@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,16 @@ import java.util.Map;
 @Setter
 @ConfigurationProperties(prefix = "spring.application")
 public class ApplicationProperties {
+    /**
+     * Contoh untuk conversion, tambahan Duration
+     */
+    private Duration defaultTimeout;
+
+    /**
+     * Contoh conversion ke tipe custom
+     */
+    private Date expiredDate;
+    
     private String name;
     private Integer version;
     private boolean productionMode;

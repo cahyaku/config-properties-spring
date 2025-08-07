@@ -280,3 +280,38 @@ CARANYA:
 > > 2. Run mvn clean compile.
 > > 3. tambahkan pada application.properties.
 > > 4. buat unit test pada class ConfigurationPropertiesTest.
+
+## Conversion
+
+```
+- Saat menggunakan Configuration Properties, BAGAIMANA Spring 
+melakukan konversi data yang ada di properties file ke tipe data di Java?
+- JAWABAN: Spring memiliki mekanisme konversi tipe data.
+- Secara default, semua tipe data yang ada di Java sudah didukung oleh Spring.
+- TAPI bagaimana jika kita ingin membuat tipe data sendiri?
+- JAWABAN: kita bisa membuat class Conversion sendiri.
+
+Sebenarnya Spring sudah menyediakan class Conversion sendiri.
+Jadi bisa lihat class turunan dari `Converter` atau `GenericConverter`.
+```
+
+> > Contoh 1: TIPE data ke String.
+> Ingin menambahkan Duration di class ApplicationProperties.
+> Bagaimana cara melakukan konversi dari Duration ke String?
+> > 1. Di class ApplicationProperties, tambahkan konfigurasi untuk Duration.
+> > 2. Bagiamana pada application.properties-nya?
+> > 3. Caranya compile dulu, tambahan dari class ApplicationProperties (run mvn compile).
+> > 4. Ubah pada application.properties, gunakan class bawaan SpringToDurationConverter.
+       > > Cara: tekan CTRT+ShIFT+N -> search di tab class -> SpringToDurationConverter.
+> > 5. Kemudian download aja soruce code-nya, atau copy paste aja.
+> > 6. sehingga pada Application.properties: tinggal anggka di depan, durasinya menit kah, detik kah:
+       > > spring.application.default-timeout=10s
+> > 7. Kemudian update unit test pada class ConfigurationPropertiesTest.
+
+> > Contoh 2: TIPE data Custom.
+> > Misal membuat tipe data String ke Date.
+> > 1. Buat class converter -> class StringToDateConverter -> pada package converter di main.
+> > 2. Tambahkan expiredDate pada class ApplicationProperties.
+> > 3. Run mvn clean compile.
+> > 4. Tambahkan pada application.properties
+> > 5. Buat unit test pada class ConfigurationPropertiesTest.

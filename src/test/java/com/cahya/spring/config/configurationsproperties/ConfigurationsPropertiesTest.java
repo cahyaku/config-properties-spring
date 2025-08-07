@@ -8,7 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Arrays;
+import java.util.Date;
 
 @SpringBootTest(classes = ConfigurationsPropertiesTest.TestApplication.class)
 public class ConfigurationsPropertiesTest {
@@ -62,6 +65,26 @@ public class ConfigurationsPropertiesTest {
         Assertions.assertEquals(100, properties.getDatabase().getMaxTableSize().get("products"));
         Assertions.assertEquals(100, properties.getDatabase().getMaxTableSize().get("customers"));
         Assertions.assertEquals(100, properties.getDatabase().getMaxTableSize().get("categories"));
+    }
+
+    /**
+     * Test untuk duration
+     */
+    @Test
+    void testDuration() {
+        Assertions.assertEquals(Duration.ofSeconds(10), properties.getDefaultTimeout());
+    }
+
+    /**
+     * Test untuk tipe custom
+     * Kalau ini di run akan error karena belum ada converter-nya.
+     * Jadi kita harus registrasukan ke ConversionService
+     */
+    @Test
+    void testCustomConverter() {
+        Date expiredDate = properties.getExpiredDate();
+        var dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Assertions.assertEquals("2023-08-03", dateFormat.format(expiredDate));
     }
 
     /**
