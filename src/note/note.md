@@ -253,3 +253,30 @@ CARANYA:
 > > 4. Kemudian tambahkan pada apllication.properties, untuk databasenya:
        > > meliputi password, username, dan url.
 > > 5. Kemudian update unit testnya di class ConfigurationPropertiesTest
+
+## Collection Configuration Properties
+
+```
+- Mendukung binding properties untuk jenis collection seperti List atau Map.
+- Ini cocok untuk data yang sangat komples, bisa Collection yang berisis data sederhana,
+  atau collection yang berisi Java Bean lagi.
+```
+
+> > > Contoh: Tambahkan pada class ApplicationProperties:
+> > 1. Tambahkan collection List<String> untuk list of string.
+> > 2. Tambahkan collection Map<String, String> untuk map of string.
+> > 3. Kemudian run mvn clean compile.
+> > 4. Tambahkan pada application.properties.
+> > 5. Lakukan unit test pada class ConfigurationPropertiesTest.
+
+## Embedded Collection
+
+```
+- Configuration Properties juga mendukung jika kita membuat Java Bean di dalam collection.
+```
+
+> > Contoh:
+> > 1. pada class ApplicationProperties.
+> > 2. Run mvn clean compile.
+> > 3. tambahkan pada application.properties.
+> > 4. buat unit test pada class ConfigurationPropertiesTest.
