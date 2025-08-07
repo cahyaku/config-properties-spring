@@ -23,7 +23,12 @@ public class PropertySourceTest {
         Assertions.assertEquals(1, properties.getVersion());
     }
 
-    // Ini mengambil data dari file properties lainnya.
+    /**
+     * Contoh mengambil data dari file properties lainnya.
+     * dengan menggunakan anotasi @PropertySource.
+     * Kalau tidak ada @PropertySource, maka
+     * data dari @value isinya adalah null.
+     */
     @SpringBootApplication
     @PropertySources({
             @PropertySource("classpath:/sample.properties")

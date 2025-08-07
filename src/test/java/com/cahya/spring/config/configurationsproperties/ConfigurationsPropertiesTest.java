@@ -15,12 +15,15 @@ public class ConfigurationsPropertiesTest {
     private ApplicationProperties properties;
 
     @Test
-    void testConfigurationProperties(){
-    Assertions.assertEquals("spring-config-properties", properties.getName());
-    Assertions.assertEquals(1, properties.getVersion());
-    Assertions.assertFalse(properties.isProductionMode());
+    void testConfigurationProperties() {
+        Assertions.assertEquals("spring-config-properties", properties.getName());
+        Assertions.assertEquals(1, properties.getVersion());
+        Assertions.assertFalse(properties.isProductionMode());
     }
 
+    /**
+     * Test untuk database properties
+     */
     @Test
     void testDatabaseProperties() {
         Assertions.assertEquals("cahya", properties.getDatabase().getUsername());
@@ -34,8 +37,8 @@ public class ConfigurationsPropertiesTest {
      * Jadi spring boot otomatis akan membuatkan bean-nya.
      */
     @SpringBootApplication
-    @EnableConfigurationProperties ({
-        ApplicationProperties.class
+    @EnableConfigurationProperties({
+            ApplicationProperties.class
     })
     public static class TestApplication {
 

@@ -28,7 +28,7 @@ public class ResourceLoaderTest {
      */
     @Test
     void testResourceLoader() throws Exception {
-        Assertions.assertEquals("Cahya Kumala-03 Agustus 2025.", sampleResource.getText().trim());
+        Assertions.assertEquals("Cahya Kumala-03 Agustus 2025", sampleResource.getText().trim());
     }
 
     @SpringBootApplication
@@ -37,9 +37,7 @@ public class ResourceLoaderTest {
         @Component
         public static class SampleResource implements ResourceLoaderAware {
 
-            /**
-             * Setter gunakan lombok agar tidak perlu buat manual.
-             */
+            //gunakan lombok @Setter, biar tidak manual
             @Setter
             private ResourceLoader resourceLoader;
 

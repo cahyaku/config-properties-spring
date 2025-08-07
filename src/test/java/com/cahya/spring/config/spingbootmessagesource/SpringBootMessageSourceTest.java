@@ -44,7 +44,5 @@ public class SpringBootMessageSourceTest {
                 return messageSource.getMessage("hello", new Object[]{"Cahya"}, locale);
             }
         }
-
-
     }
 }

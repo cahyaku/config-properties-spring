@@ -24,7 +24,8 @@ Caranya menambagkan prefixnya, misal:
 2. file:/home/pzn/application.properties
 3. url:http://localhost:8080/application.properties
 
-Keterangan:ngam![img.png](img.png)bil file dari classpath.
+Keterangan:
+1. classpath: untuk mengambil file dari classpath.
 2. file: untuk mengambil file dari filesystem.
 3. url: untuk mengambil file dari URL.
 ```
@@ -34,7 +35,6 @@ Keterangan:ngam![img.png](img.png)bil file dari classpath.
 > Seperti applicationContext adalah turunan dari Resource Loader.
 >> Contoh: pada package resourceloader -> class ResourceLoaderTest
 > > file yang diambil adalah resource.txt dalam folder text.
->>> Masih ada error past running -> skip dulu.
 
 ## Message Source
 
@@ -148,12 +148,16 @@ JADI kita dapat menggunakan @TestPropertySource.
 ## Profile
 
 ```
-- Profile adalah fitur untuk menentukan component mana yang mau jalan.
+- Profile adalah fitur untuk menentukan COMPONENT mana yang mau jalan.
 - Profile cocok ketika butuh component berbeda pada kondisi tertentu, misalnya:
   Membuat component untuk koneksi ke Memory Database, tapi jika di Local misal, kita ingin
   componentnya diganti dengan koneksi di memory aplikasi saja.
 - Untuk menandai sebuah komponen dengan informasi profile, kita dapat menggunakan annotation @Profile.
 ``` 
+
+> > Contohnya: tambahkan pada application.properties
+> > spring.profiles.active=local
+> > JIKA mau lebih dari 1 tinggal tambahkan koma, misal: spring.profiles.active=local, dev, test
 
 #### Profile Properties
 
@@ -191,19 +195,22 @@ profile bisa lebih dari satu, jadi bisa mengaktifkan beberapa profile sekaligus.
 > > Contoh: pada package profileenvironment -> class ProfileEnvironmentTest
 
 ## Profile Properties File
+
 ```
 - Dengan fitur profile, kita bisa membuat file properties yang sesuai dengan profile yang aktif.
 - Penamaan properties file adalah application-{profile}.properties.
 - Misal active profile adalah dev, maka application-dev.properties akan digunakan.
 ```
->> Contoh: pada folder main -> resources buat file:
+
+> > Contoh: pada folder main -> resources buat file:
 > > 1. application-production.properties
 > > 2. application-test.properties
-> > Misalnya akan membuat beberapa profile, misalnya default, production, dan test.
-> > Jadi tambahkan profile.default pada application.properties
-> > Buat komponen, pada folder test -> package profileproperties -> class ProfilePropertiesTest
+       > > Misalnya akan membuat beberapa profile, misalnya default, production, dan test.
+       > > Jadi tambahkan profile.default pada application.properties
+       > > Buat komponen, pada folder test -> package profileproperties -> class ProfilePropertiesTest
 
 ## Configuration Properties
+
 ```
 - Fitur ini bisa digunakan untuk melakukan binding secara otomatis key yang ada di 
   application.properties ke Java Bean property secara otomatis.
@@ -217,25 +224,32 @@ CARANYA:
   kita bisa menggunakan annotation @ConfigurationProperties.
 - Kemudian perlu menambahkan prefix untuk key di application.propertiesnya.
 ```
->> Contoh: Class ApplicationProperties pada package properties -> 
+
+> > Contoh: Class ApplicationProperties pada package properties -> main.
 > > Tapi @ConfigurationProperties tidak akan bekerja jika tidak ada prefixnya dan tidak otomatis melakukan binding.
 > > Jadi perlu membuat metadata untuk bindingnya. Cara run di terminal: mvn clean compile.
 > > Kemudian cek di target/classes/META-INF/spring-configuration-metadata.json
-> > Tapi untuk menjalankannya, 
+> > Tapi untuk menjalankannya,
 > > kita perlu menambahkan annotation @EnableConfigurationProperties pada class yang akan menggunakan binding.
 > > Contoh: pada folder test -> package configurationproperties -> class ConfigurationPropertiesTest
 
+> > > Jadi nanti bisa pakai semua properties yang ada di spring-configuration-metadata.json
+
 ## Complex Configuration Properties
+
 ```
 - Configuration Properties mendukung Java Bean yang kompleks.
 - Misalnya yang berisikan Java Bean object lain.
 - Ini memungkinkan pembuatan Configuration properties menjadi lebih mudah,
   karena tidak perlu dilakukan secara manual.
 ```
-> Misalnya kita memiliki DatabaseProperties yang  memiliki object kompleks.
+
+> Misalnya kita memiliki DatabaseProperties yang memiliki object kompleks.
 > Kita coba:
-> > 1. Buat class DatabaseProperties, saya gabung 1 file saja di class ApplicationProperties -> package properties -> main.
+> > 1. Buat class DatabaseProperties, saya gabung 1 file saja di class ApplicationProperties -> package properties ->
+       main.
 > > 2. Jadi ini perlu di compile ulang, karena ada perubahan di class ApplicationProperties => run = mvn clean compile.
 > > 3. Kemudian cek di target/classes/META-INF/spring-configuration-metadata.json
-> > 4. Kemudian tambahkan pada apllication.properties, untuk databasenya.
+> > 4. Kemudian tambahkan pada apllication.properties, untuk databasenya:
+       > > meliputi password, username, dan url.
 > > 5. Kemudian update unit testnya di class ConfigurationPropertiesTest
