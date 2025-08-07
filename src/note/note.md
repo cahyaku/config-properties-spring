@@ -315,3 +315,29 @@ Jadi bisa lihat class turunan dari `Converter` atau `GenericConverter`.
 > > 3. Run mvn clean compile.
 > > 4. Tambahkan pada application.properties
 > > 5. Buat unit test pada class ConfigurationPropertiesTest.
+       > > Berkaitan dengan Conversion Service.
+
+## Conversion Service
+
+```
+- Conversion Service adalah inti dari logic untuk melakukan konversi tipe data di Spring.
+- Saat membuat custom converter, kita harus registrasikan ke conversion service.
+- Kita bisa mengimplementasikan class ApplicationConversionService.
+Tapi kali ini akan dibuat manual dulu.
+```
+
+> > Lanjutkan contoh sebelumnya:
+> > Buat bean method pada ConfigurationPropertiesTest, yang bernama ConversionService.
+
+#### Menggunakan Conversion Service
+
+```
+Conversion Service selain bisa digunakan untuk melaklukan konversi tipe data otomatis,
+ketika menggunakan config properties, kita bisa gunakan secara PROGRAMMATICALLY untuk melakukan konversi tipe data.
+CARA: ambil object ConversionService lalu panggil langsung methodnya.
+```
+
+> > Contoh:
+> Misal ingin mengubah 10s String menuju duration.
+> 1. inject ConversionService pada class ConfigurationPropertiesTest.
+> > 1. Buat testConversionService
