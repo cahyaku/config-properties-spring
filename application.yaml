@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Belajar Spring Boot using YAML
+    version: 3
+    production-mode: true

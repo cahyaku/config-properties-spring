@@ -442,3 +442,26 @@ Kesimpulan cukup dengan environment variable kita dapat mengubah detailnya.
 > > Jadi cara ini tidak perlu mengubah file application.properties.
 > Result:
 > ![img_4.png](img_4.png)
+
+# Yaml - selain application.properties
+
+```
+- Selain application.properties, Spring Boot juga mendukung file konfigurasi dalam format YAML.
+- CARA: mengganti file application.properties menjadi application.yaml.
+- File Ymal mempermudah ketika kita membuat configuraso yang sangat kompleks.
+- MIRIP seperti JSON
+```
+
+##### yaml vs properties:
+
+> > 1. yaml -> tidak mengulang nama keynya, jadi lebih ringkas.
+       > >![img_6.png](img_6.png)
+>>2. properties -> pengulangan nama keynya
+     > > ![img_5.png](img_5.png)
+
+> > Conto: membuat file configurasi application.yml, tapi kita set menjadi external file.
+> create new file application.yml di dalam folder config-properties.
+> Kemudian jalankan di terminal:
+> > > java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar --spring.config.location=application.yaml
+> > Hasilnya, file application.yaml akan diambil sebagai konfigurasi.:
+> ![img_7.png](img_7.png)
