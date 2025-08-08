@@ -21,8 +21,7 @@ public class SpringConfigPropertiesApplication {
         conversionService.addConverter(stringToDateConverter);
         return conversionService;
     }
-
-
+    
     public static void main(String[] args) {
         SpringApplication.run(SpringConfigPropertiesApplication.class, args);
     }

@@ -2,6 +2,10 @@
 
 #
 
+Some url:
+
+1. https://docs.google.com/presentation/d/16ySkTMfFaz4npehRXFk_6zj6BlZUvGFON5fMIKSR2W8/edit?usp=sharing
+
 ## Resource
 
 ```
@@ -375,10 +379,48 @@ CARA: ambil object ConversionService lalu panggil langsung methodnya.
      > Hasilnya masih mengambil dari application.properties yang ada di dalam jar.
      > ![img_1.png](img_1.png)
 > 9. Kemudian running:
+     > TAMBAHAN saat running --spring.config.location=external.properties, sebagai berikut:
      > java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar --spring.config.location=external.properties
      > Untuk mengambil file external.properties yang ada di luar jar, jadi replace file application.properties yang ada
      di dalam jar.
      > Hasilnya, dimana version 2 dan true sesuai dengan external.properties:
      > ![img_2.png](img_2.png)
 
-    
+## Environment Variable
+
+```
+- Saat menggunakan external.properties file,
+  properties file yang ada di dalam Jar tidak akan digunakan.
+  Karena sudah di replaca pada contoh di atas.
+- Hal ini menyebabkan kita harus menulis ulang semua propertis key yang ada di properties file,
+ dan kadang jika isinya terlalu banyak, akan sangat menyulitkan.
+- Spring Boot juga mendukung mengambil properties dari environment variable.
+- Hal ini membuat kita lebih mudah, karena tidak harus semua properties dibuat ulang di file external.properties.
+- CUKUP yang dibutuhkan saja.
+- Selain itu, kita bisa membuat default value ketika environtment variablenya tidak ada.
+```
+
+> > Contoh:
+> Ubah dalam application.properties:
+> > Tambahkan spring.application.name=${APPLICATION_NAME:Belajar Spring Boot}
+> > Kalau test running hasilnya akan tetap sama, ini run dari main class SpringConfigurationPropertiesApplication.
+> > Karena belum ada environment variable APPLICATION_NAME, APPLICATION_VERSION, dan APPLICATION_PRODUCTION_MODE.
+> > Kemudian package ulang, run diterminal: mvn clean package.
+> > Kemudian coba jalankan lagi di terminal:
+> > > java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar
+> > Hasilnya tetap version 1 dan false.
+> > > APA yang terjadi jika membuat environment variable?
+> > JADI ketika menjalankan cukup running ini di terminal:
+> >>> export APPLICATION_NAME="Belajar Spring Boot Application by CHY"
+> > > > export APPLICATION_VERSION="2"
+> > > > export APPLICATION_PRODUCTION_MODE="false"
+> > > Kemuduian running lagi:
+> > > java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar
+
+```
+Kesimpulan cukup dengan environment variable kita dapat mengubah detailnya.
+```
+
+> Lihat hasilnya menjadi CHY, karena yang saya ubah hanya name nya,
+> Jika ingin mengubah version dll caranya seperti di atas.
+> > ![img_3.png](img_3.png)
