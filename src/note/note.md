@@ -339,5 +339,46 @@ CARA: ambil object ConversionService lalu panggil langsung methodnya.
 
 > > Contoh:
 > Misal ingin mengubah 10s String menuju duration.
-> 1. inject ConversionService pada class ConfigurationPropertiesTest.
-> > 1. Buat testConversionService
+> > 1. inject ConversionService pada class ConfigurationPropertiesTest.
+> > 2. Buat testConversionService
+
+## Externalized Properties File - Mengganti Konfigurasi dari luar jar
+
+```
+- Saat Aplikasi Spring Boot sudah selesai, semua config properties akan dibungkus di dalam jar file.
+- BAGAIMANA jika kita ingin mengubah isi informasi nya?
+- Misal konfigurasi database tidak mungkin kita simpan di dalam kode program.
+- Ada beberapa cara untuk menggunakan configuration dari luar aplikasi, ketika sudah menjadi file jar.
+```
+
+##### Caranya:
+
+> 1. Membuat application.properties di luar jar.
+>
+> Walaupun sudah ada di dalam jar, kita bisa membuat file application.properties di luar jar.
+> Lalu ketika menjalankan aplikasi jar Spring Boot, kita bisa menyebutkan lokasi application.properties nya.
+> DENGAN perintah: java -jar lokasi/file.jar --spring.config.location=lokasi/file/application.properties.
+> JADI ini akan mereplace file application.properties yang ada di dalam jar.
+
+> > Contoh: Membuat program sederhana, yang hanya menampilkan isi dari ApplicationProperties.
+> 1. Buat new package di main -> namanya runner -> ApplicationPropertiesRunner
+> 2. Lalu update di class SpringConfigurationPropertiesApplication.
+> 3. Kemudian langsung test runing main class-nya.
+> 4. Next Buat file external.properties di luar jar, misal di folder config-properties.
+> 5. Kemudian compile, buka terminal, lalu running: mvn compile pacakage
+> 6. Package itu untuk membuat file jar.
+> 7. Cek di dalam target, ada file jar-nya.
+     ![img.png](img.png)
+>
+> 8. Kemudian jalankan secara manual di terminal tanpa configurasi:
+     > cara: java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar
+     > Hasilnya masih mengambil dari application.properties yang ada di dalam jar.
+     > ![img_1.png](img_1.png)
+> 9. Kemudian running:
+     > java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar --spring.config.location=external.properties
+     > Untuk mengambil file external.properties yang ada di luar jar, jadi replace file application.properties yang ada
+     di dalam jar.
+     > Hasilnya, dimana version 2 dan true sesuai dengan external.properties:
+     > ![img_2.png](img_2.png)
+
+    
