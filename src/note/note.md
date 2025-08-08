@@ -424,3 +424,21 @@ Kesimpulan cukup dengan environment variable kita dapat mengubah detailnya.
 > Lihat hasilnya menjadi CHY, karena yang saya ubah hanya name nya,
 > Jika ingin mengubah version dll caranya seperti di atas.
 > > ![img_3.png](img_3.png)
+
+## Mengubah Profile
+
+```
+- Selain mengubah active profile menggunakan application properties,
+  kita juga bisa menggubnakan cammand line argument untuk mengubah acative profile.
+- Gunakan argumen:
+    --spring.profiles.active=first, second, third.
+```
+
+> Contoh:
+> Running di terminal, jarnya dulu, kemudian argumen di atas, sebagai berikut:
+> > java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar --spring.profiles.active=production
+> JIKA ingin lebih dari satu profile, tinggal tambahkan koma, misal:
+> > > java -jar target/spring-config-properties-0.0.1-SNAPSHOT.jar --spring.profiles.active=production,local,test
+> > Jadi cara ini tidak perlu mengubah file application.properties.
+> Result:
+> ![img_4.png](img_4.png)
